@@ -6,7 +6,7 @@
 /*   By: bsouhar <bsouhar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:56:01 by bsouhar           #+#    #+#             */
-/*   Updated: 2023/10/11 21:17:41 by bsouhar          ###   ########.fr       */
+/*   Updated: 2023/10/12 13:50:01 by bsouhar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,27 @@ void Fixed::setRawBits (int const raw) {
 int Fixed::getRawBits() const {
     std::cout << "getRawBits member function called" << std::endl;
     return this->_fixed;
+}
+
+Fixed::Fixed(const int param) {
+    std::cout << "Int constructor called" << std::endl;
+    this->_fixed = param << Fixed::i;
+}
+
+Fixed::Fixed(const float n) {
+    std::cout << "Float constructor called" << std::endl;
+    this->_fixed = roundf(n * (1 << Fixed::i));
+}
+
+float Fixed::toFloat(void) const {
+    return ((float)this->_fixed / (float)(1 << Fixed::i));
+}
+
+int Fixed::toInt(void) const {
+    return (this->_fixed >> Fixed::i);
+}
+
+std::ostream &operator << (std::ostream &out, const Fixed &fixed) {
+    out << fixed.toFloat();
+    return out;
 }
