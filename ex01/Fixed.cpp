@@ -6,7 +6,7 @@
 /*   By: bsouhar <bsouhar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 10:56:01 by bsouhar           #+#    #+#             */
-/*   Updated: 2023/10/12 13:50:01 by bsouhar          ###   ########.fr       */
+/*   Updated: 2023/10/12 20:03:26 by bsouhar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,3 @@ float Fixed::toFloat(void) const {
     return ((float)this->_fixed / (float)(1 << Fixed::i));
 }
 
-int Fixed::toInt(void) const {
-    return (this->_fixed >> Fixed::i);
-}
-
-std::ostream &operator << (std::ostream &out, const Fixed &fixed) {
-    out << fixed.toFloat();
-    return out;
-}
