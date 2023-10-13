@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bsouhar <bsouhar@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 10:55:17 by bsouhar           #+#    #+#             */
-/*   Updated: 2023/10/12 13:49:40 by bsouhar          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
@@ -17,23 +5,22 @@
 #include <cmath>
 
 class Fixed {
-  private:
-    int _fixed;
-    static const int i;
-  public:
-  Fixed();
-  Fixed(const Fixed &fixed);
-  Fixed(const int param);
-  Fixed(const float n);
-  ~Fixed();
-  
-  Fixed & operator = (const Fixed &fixed);
-  void setRawBits(int const raw);
-  int getRawBits() const;
-  float toFloat(void) const;
-  int toInt(void) const;
+    private:
+        int _fixed;
+        static const int scale = 8; // 1/2^8 
+    public:
+        Fixed();
+        Fixed(const int f);
+        Fixed(const float f);
+        Fixed(const Fixed& Fixed); 
+        ~Fixed();
+        float toFloat( void ) const;
+        int toInt( void ) const;
+        Fixed& operator = (const Fixed&);
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
 };
 
-std::ostream &operator << (std::ostream &out, const Fixed &fixed);
+std::ostream& operator << (std::ostream& out, const Fixed& fixed);
 
 #endif

@@ -1,7 +1,11 @@
-NAME = Fixed
+NAME = FIXED
 
 SRC = main.cpp Fixed.cpp
-OBJ = $(SRC:.cpp=.o)
+HDF = Fixed.hpp
+OBJ = $(SRC:.cpp=.o )
+
+%.o: %.cpp $(HDF)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
