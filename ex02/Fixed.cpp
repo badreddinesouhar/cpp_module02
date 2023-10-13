@@ -58,7 +58,7 @@ Fixed Fixed::operator+(const Fixed& fixed) const {
 }
 
 Fixed Fixed::operator*(const Fixed& fixed) const {
-    return Fixed(this->_fixed * fixed._fixed);
+    return Fixed(this->toFloat() * fixed.toFloat());
 }
 
 Fixed Fixed::operator-(const Fixed& fixed) const {
@@ -94,7 +94,7 @@ bool Fixed::operator<=(const Fixed& fixed) const {
 }
 
 Fixed Fixed::operator++(int) {
-    Fixed tmp;
+    Fixed tmp = *this;
     this->_fixed++;
     return (tmp);
 }
@@ -105,7 +105,7 @@ Fixed Fixed::operator++() {
 }
 
 Fixed Fixed::operator--(int) {
-    Fixed tmp;
+    Fixed tmp = *this;
     this->_fixed--;
     return (tmp);
 }
