@@ -6,7 +6,7 @@
 /*   By: bsouhar <bsouhar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:07:27 by bsouhar           #+#    #+#             */
-/*   Updated: 2023/10/14 12:07:28 by bsouhar          ###   ########.fr       */
+/*   Updated: 2023/11/02 09:56:56 by bsouhar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ Fixed Fixed::operator+(const Fixed& fixed) const {
 }
 
 Fixed Fixed::operator*(const Fixed& fixed) const {
-    return Fixed(this->toFloat() * fixed.toFloat());
+    float a = (static_cast<float>(this->_fixed) / (1 << 4) ) * ((fixed._fixed) / (1 << 4)) / (1 << 8);
+    return Fixed(a);
 }
 
 Fixed Fixed::operator-(const Fixed& fixed) const {
@@ -78,7 +79,8 @@ Fixed Fixed::operator-(const Fixed& fixed) const {
 }
 
 Fixed Fixed::operator/(const Fixed& fixed) const {
-    return Fixed(this->_fixed / fixed._fixed);
+    float i = ((static_cast<float>(this->_fixed) * 256)) / ((fixed._fixed) << 8);
+    return(Fixed(i));
 }
 
 bool Fixed::operator<(const Fixed& fixed) const {
